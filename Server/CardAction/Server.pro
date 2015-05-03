@@ -10,5 +10,7 @@ include(deployment.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    cardmanager.h
+    cardmanager.h \
+    pokermode.h \
+    card.h
 
