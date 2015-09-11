@@ -1,44 +1,57 @@
 #ifndef COMBINATIONS_H
 #define COMBINATIONS_H
 
-#include <set>
+#include <list>
 #include <vector>
 #include <string>
-#include <iostream>
+
+#include "card.h"
+
+//-----------------------------
+
+enum Cmb_Name {ROYAL_FLASH = 0, STREET_FLASH, FOUR_OF_KIND, FULL_HOUSE,
+               FLASH, STREET, THREE_OF_KIND, TWO_PAIR, PAIR, KICKER};
+
+//-----------------------------
+
+struct Cmb_Result
+{
+    Cmb_Name name;
+    int value;
+
+    //---------------
+
+    Cmb_Result() : name(KICKER), value(-1) {}
+
+    static std::string toString(const Cmb_Name& name)
+    {
+        static const std::string names[] = {"ROYAL_FLASH", "STREET_FLASH", "FOUR_OF_KIND",
+                                            "FULL_HOUSE", "FLASH", "STREET", "THREE_OF_KIND",
+                                            "TWO_PAIR", "PAIR", "KICKER"};
+        return names[(int)name];
+    }
+};
+
+//-----------------------------
 
 class Combinations
 {
-    struct Card
-    {
-        short value;
-        short suit;
-
-        Card(const int& val)
-        {
-            // Card deck contains 52 cards =  4 suits * 13 cards.
-            value = val % 13;
-            suit  = val / 13;
-        }
-        bool operator <(const Card other) const
-        {
-            if(suit != other.suit)
-                return suit < other.suit;
-            return value < other.value;
-        }
-    };
-
-    //-----------------------------
-
-    typedef std::set<Card> Cards;
+    typedef std::list<Card> Cards;
     typedef Cards::iterator It;
+    typedef Cards::const_iterator Const_It;
 
     //-----------------------------
-    static bool isFlash(const Cards&, int);
+
+    static Cmb_Result isStreetFlash(const Cards&);
+    static Cmb_Result isFullHouse  (const Cards&);
+    static Cmb_Result isStreet     (const Cards&);
+    static Cmb_Result isFourOfKind (const Cards&);
+
+    //-----------------------------
 
 public:
-    static int defineCombination(const std::vector<int>&, std::string& );
+    static Cmb_Result defineCombination(const std::vector<int>&);
 };
-
 
 
 #endif // COMBINATIONS_H
