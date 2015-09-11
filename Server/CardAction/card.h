@@ -1,50 +1,54 @@
 #ifndef CARD
 #define CARD
 
-struct card
+struct Card
 {
 
-    int first; //value
-    int second; //suit
-    card(int f, int s) : first(f), second(s) {}
-    card() : first(0), second(0) {}
+    short value;
+    short suit;
 
+    Card() : value(0), suit(0) {}
+    Card(int val) : value(val % 13), suit(val / 13) {}  // Each suit has 13 cards.
 
-    card& operator=(const card& cop)
+    //------------------------------
+
+    Card& operator=(const Card& cop)
     {
-        first  = cop.first;
-        second = cop.second;
+        value  = cop.value;
+        suit = cop.suit;
         return *this;
     }
 
-    bool operator==(const card& cop)
+    bool operator ==(const Card& cop) const
     {
-        return first == cop.first;
+        return value == cop.value;
     }
 
-    bool operator>(const card& cop)
+    bool operator>(const Card& cop) const
     {
-        return first > cop.first;
+        return value > cop.value;
 
     }
 
-    bool operator<(const card& cop)
+    bool operator <(const Card& other) const
     {
-        return first < cop.first;
+        if(suit != other.suit)
+            return suit < other.suit;
+        return value < other.value;
     }
-
 };
 
 
-bool op(const card& c1, const card& c2)
+inline bool sortValue(const Card& c1, const Card& c2)
 {
      //sort criterion
-    return c1.first < c2.first;
+    return c1.value < c2.value;
 }
 
-bool op2(const card& c1, const card& c2)
+inline bool op(const Card& c1, const Card& c2)
 {
-    return c1.first == c2.first;
+    return c1.value == c2.value;
 }
+
 #endif // CARD
 
