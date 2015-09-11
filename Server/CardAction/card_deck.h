@@ -4,10 +4,11 @@
 #include <vector>
 #include <algorithm>
 
-//-----------------------
+//-------------------------------------------------------
+// The class using for generations and control card deck |
+//-------------------------------------------------------
 
-
-class Card_Desk
+class Card_Deck
 {
     typedef int Card;
     typedef std::vector<Card> Deck;
@@ -15,7 +16,7 @@ class Card_Desk
 
 
 public:
-    Card_Desk(int size = 52)
+    Card_Deck(int size = 52)
     {
         for(int i = 0; i < size; ++i)
             cards.push_back(i);
