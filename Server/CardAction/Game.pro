@@ -5,7 +5,7 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     combinations.cpp \
-    gamemode.cpp
+    game.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -14,5 +14,5 @@ HEADERS += \
     card.h \
     card_deck.h \
     combinations.h \
-    gamemode.h
+    game.h
 
