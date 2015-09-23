@@ -2,7 +2,7 @@
 #include <iterator>
 #include <set>
 
-#include "gamemode.h"
+#include "combinations.h"
 
 
 Cmb_Result Combinations::defineCombination(const std::vector<int>& desk)
