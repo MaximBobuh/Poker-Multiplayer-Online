@@ -7,6 +7,8 @@ class GameImpl
 public:
     GameImpl();
     ~GameImpl();
+
+    virtual void nextStep(){}
 };
 
 #endif // GAMEIMPL_H

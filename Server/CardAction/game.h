@@ -9,6 +9,8 @@ public:
     Game();
     ~Game();
 
+    void run();
+
 private:
     GameImpl* pimpl;
 };
